@@ -27,26 +27,33 @@ function App() {
 
       <Route path="/" exact>
         <Home
-          title={"Smart phone"}
-          action={"Add to cart"} />
+          title={"Smart Phone"}
+          action={"Add to cart"}
+          type={"phone"} />
         <Home
-          title={"XXXX"}
-          action={"Add to cart"} />
+          title={"Device"}
+          action={"Add to cart"}
+          type={"device"} />
         <Home
           title={"Laptop"}
-          action={"Add to cart"} />
+          action={"Add to cart"}
+          type={"laptop"} />
       </Route>
 
       <Route path="/admin/" exact>
-      <Home
-          title={"Smart phone"}
-          action={"Edit this product"} />
         <Home
-          title={"XXXX"}
-          action={"Edit this product"} />
+          title={"Smart phone"}
+          action={"Edit this product"}
+          type={"phone"} />
+          
+        <Home
+          title={"Device"}
+          action={"Edit this product"}
+          type={"device"} />
         <Home
           title={"Laptop"}
-          action={"Edit this product"} />
+          action={"Edit this product"}
+          type={"laptop"} />
       </Route>
 
       <Route path="/cart/">

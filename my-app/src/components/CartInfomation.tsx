@@ -5,6 +5,72 @@ import '../cart.css';
 import '../admin.css';
 import CartItem from './CartItem';
 
+const ListItem = [
+    {
+        "ten": "LG G8",
+        "hinhAnh": "https://picsum.photos/200/300",
+        "giaGoc": 3800000,
+        "phamTramGiamGia": 10,
+        "khuVucBan": "Hà Nội",
+        "type": "phone",
+        "ID": "58170866271603874895311",
+        "SoLuong": 1
+    },
+    {
+        "ten": "LG G8",
+        "hinhAnh": "https://picsum.photos/200/300",
+        "giaGoc": 4800000,
+        "phamTramGiamGia": 10,
+        "khuVucBan": "Hà Nội",
+        "type": "phone",
+        "ID": "58170866271603874895311",
+        "SoLuong": 2
+    },
+    {
+        "ten": "LG G8",
+        "hinhAnh": "https://picsum.photos/200/300",
+        "giaGoc": 4800000,
+        "phamTramGiamGia": 10,
+        "khuVucBan": "Hà Nội",
+        "type": "phone",
+        "ID": "58170866271603874895311",
+        "SoLuong": 3
+    },
+    {
+        "ten": "LG G8",
+        "hinhAnh": "https://picsum.photos/200/300",
+        "giaGoc": 6800000,
+        "phamTramGiamGia": 10,
+        "khuVucBan": "Hà Nội",
+        "type": "phone",
+        "ID": "58170866271603874895311",
+        "SoLuong": 2
+    },
+    {
+        "ten": "LG G8",
+        "hinhAnh": "https://picsum.photos/200/300",
+        "giaGoc": 3800000,
+        "phamTramGiamGia": 10,
+        "khuVucBan": "Hà Nội",
+        "type": "phone",
+        "ID": "58170866271603874895311",
+        "SoLuong": 4
+    }
+].filter((item) => {
+    return (item.giaGoc - item.giaGoc * item.phamTramGiamGia / 100) > 4000000;
+})
+
+const TotalPrice = ListItem.filter((item) => {
+    return (item.giaGoc - item.giaGoc * item.phamTramGiamGia / 100) > 4000000
+}).map((item) => {
+    return (item.giaGoc - item.giaGoc * item.phamTramGiamGia / 100) * item.SoLuong
+}).reduce((x, y) => {
+    return x + y;
+});
+
+console.log("Tong gia tri gio hang la: ", TotalPrice)
+
+
 export default class CartInfomation extends Component {
     render() {
         return (
@@ -14,30 +80,16 @@ export default class CartInfomation extends Component {
                         Giỏ hàng của tôi
                     </div>
                     <div id="my-cart">
-                        <CartItem imgage={""}
-                            name={"I phone 12 pro max"}
-                            price={34000000}
-                            count={2}
-                            total={68000000}
-                        ></CartItem>
-                        <CartItem imgage={""}
-                            name={"Samsung galaxy note 10"}
-                            price={23000000}
-                            count={1}
-                            total={23000000}
-                        ></CartItem>
-                        <CartItem imgage={""}
-                            name={"Xiaomi Redmi note 8"}
-                            price={6000000}
-                            count={3}
-                            total={18000000}
-                        ></CartItem>
-                        <CartItem imgage={""}
-                            name={"Samsung Utltra 20"}
-                            price={30000000}
-                            count={1}
-                            total={30000000}
-                        ></CartItem>
+                        {ListItem.map((item) => {
+                            return (
+                                <CartItem imgage={item.hinhAnh}
+                                    name={item.ten}
+                                    price={item.giaGoc - item.giaGoc * item.phamTramGiamGia / 100}
+                                    count={item.SoLuong}
+                                    total={item.SoLuong * (item.giaGoc - item.giaGoc * item.phamTramGiamGia / 100)}
+                                />
+                            )
+                        })}
                     </div>
                 </div>
                 <div className="check-out">
@@ -66,7 +118,7 @@ export default class CartInfomation extends Component {
                             <label htmlFor="address" className="error" />
                         </div>
                         <div className="tinhTien" id="tinhTien1">
-                            Total: 300,000,000 VND
+                            {TotalPrice} VND
                         </div>
                         <div className="xac-nhan-don-hang">
                             <button className="bntXacNhan">Xác Nhận Đơn Hàng</button>

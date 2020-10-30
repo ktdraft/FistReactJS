@@ -24,4 +24,5 @@ interface PropsProduct {
     name: string,
     price: number,
     discount: number
+    typeOfProduct: string
 }
