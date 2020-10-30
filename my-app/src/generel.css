@@ -107,8 +107,11 @@ body{
 }
 
 .account .cart {
-    position: relative;
+    /* position: relative; */
+    display: block;
+    
 }
+
 
 .cart .cart-number {
     position: absolute;

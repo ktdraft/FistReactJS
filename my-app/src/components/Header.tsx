@@ -1,3 +1,4 @@
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import React, { Component } from 'react'
 import '../generel.css';
 import '../home.css';
@@ -13,7 +14,7 @@ export default class Header extends Component {
                 </div>
                 <div className="menu">
                     <ul>
-                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="/">Trang chủ</a></li>
                         <li><a href="#">Sản phẩm</a></li>
                         <li><a href="#">Điện thoại</a>
                             <ul>
@@ -48,10 +49,14 @@ export default class Header extends Component {
                 </div>
                 <div className="account">
                     <div className="login">
-                        <a href="edit_san_pham.html"><i className="fas fa-user" /></a>
+                        <a href="/admin/">
+                            <i className="fas fa-user-shield"></i>
+                        </a>
                     </div>
                     <div className="cart">
-                        <a href="cart.html"><i className="fas fa-cart-plus" /></a>
+                        <a href="/cart/">
+                            <i className="fas fa-cart-plus"></i>
+                        </a>
                         <p className="cart-number" />
                     </div>
                 </div>

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import Cart_MainSection from './Cart_MainSection'
 import '../generel.css';
 import '../home.css';
 import '../cart.css';
 import '../admin.css';
+import CartItem from './CartItem';
 
-export default class Cart_Section extends Component {
+export default class CartInfomation extends Component {
     render() {
         return (
             <div className="all-frame">
@@ -14,9 +14,30 @@ export default class Cart_Section extends Component {
                         Giỏ hàng của tôi
                     </div>
                     <div id="my-cart">
-                        <Cart_MainSection></Cart_MainSection>
-                        <Cart_MainSection></Cart_MainSection>
-                        <Cart_MainSection></Cart_MainSection>
+                        <CartItem imgage={""}
+                            name={"I phone 12 pro max"}
+                            price={34000000}
+                            count={2}
+                            total={68000000}
+                        ></CartItem>
+                        <CartItem imgage={""}
+                            name={"Samsung galaxy note 10"}
+                            price={23000000}
+                            count={1}
+                            total={23000000}
+                        ></CartItem>
+                        <CartItem imgage={""}
+                            name={"Xiaomi Redmi note 8"}
+                            price={6000000}
+                            count={3}
+                            total={18000000}
+                        ></CartItem>
+                        <CartItem imgage={""}
+                            name={"Samsung Utltra 20"}
+                            price={30000000}
+                            count={1}
+                            total={30000000}
+                        ></CartItem>
                     </div>
                 </div>
                 <div className="check-out">

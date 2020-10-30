@@ -53,7 +53,7 @@
 }
 
 .account .cart {
-    display: none;
+    display: block;
 }
 
 .account button {

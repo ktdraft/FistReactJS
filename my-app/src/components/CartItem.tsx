@@ -1,26 +1,35 @@
 import React, { Component } from 'react'
 
-export default class Cart_MainSection extends Component {
+export default class CartItem extends Component<PropsCartItem, {}> {
     render() {
         return (
             <div className="khungItem">
                 <div className="hinhAnhItem">
-                    <img src="" alt="" />
+                    <img src={this.props.imgage} alt="" />
                 </div>
                 <div className="khungTenVaGia">
                     <div className="tenItem">
-                        <p>I phone 12 pro max</p>
+                        <p>{this.props.name}</p>
                     </div>
                     <div className="GiaItem">
-                        <p>30,000,000 VND</p>
+                        <p>{this.props.price}</p>
                     </div>
                 </div>
                 <div className="soLuongItem">
-                    <input type="number" className="soLuong" id="" value='10' />
+                    <input type="number" className="soLuong" id="" value={this.props.count} />
                 </div>
-                <div className="thanhTien">100,000,000 VND</div>
+                <div className="thanhTien">{this.props.total}</div>
                 <button className="xoaItemGioHang"><i className="fas fa-trash"></i></button>
             </div>
         )
     }
+}
+
+interface PropsCartItem {
+    imgage: string,
+    name: string,
+    price: number,
+    count: number,
+    total: number
+
 }
