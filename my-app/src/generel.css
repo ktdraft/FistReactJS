@@ -107,7 +107,7 @@ body{
 }
 
 .account .cart {
-    /* position: relative; */
+    position: relative;
     display: block;
     
 }
@@ -118,7 +118,7 @@ body{
     width: 16px;
     height: 16px;
     background-color: white;
-    top: 25px;
+    top: 20px;
     right: 8px;
     border-radius: 50%;
     color: red;

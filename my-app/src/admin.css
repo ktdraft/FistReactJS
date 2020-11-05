@@ -1,3 +1,7 @@
+.fullScreenDialog {
+    position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+}
+
 .model-edit {
     width: 500px;
     height: 600px;
@@ -6,8 +10,8 @@
     left: 400px;
     background-color: white;
     box-shadow: 0px 0px 10px black;
-    z-index: 6;
-    display: none;
+    z-index: 10006;
+    display: block;
 }
 
 .model-edit input{
@@ -76,7 +80,7 @@
     background-color: white;
     box-shadow: 0px 0px 10px black;
     z-index: 6;
-    display: none;
+    display: block;
 }
 .selectType select{
     width: 100px;

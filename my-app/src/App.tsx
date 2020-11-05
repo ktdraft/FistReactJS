@@ -3,67 +3,203 @@ import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Slide from './components/Slide';
+import { uuid } from "uuidv4";
+import { ProductModel } from './model/Product';
 
 import {
-  BrowserRouter as Router,
-  Route
+   BrowserRouter as Router,
+   Route
 } from "react-router-dom";
-import Home from './components/Home';
-import CartInfomation from './components/CartInfomation';
+
+import ProductHome from './components/ProductHome';
+import CartInformation from './components/CartInformation'
+import AdminProduct from './components/AdminHome';
+import { useState } from 'react';
+import { ItemModel } from './model/ItemModel';
+
+const createDataProducts = () => {
+   const x: ProductModel[] = [
+      {
+         id: uuid(),
+         price: 145645654,
+         image:
+            "https://i.picsum.photos/id/477/200/300.jpg?hmac=Y-uy4_ZZZ6HOZCxdiN04OOypBZ3y2dY2gAfu9MvZMSE",
+         place: "string;",
+         percentDiscount: 54,
+         name: "ggg;",
+         type: "phone",
+      },
+      {
+         id: uuid(),
+         price: 15464564,
+         image:
+            "https://i.picsum.photos/id/477/200/300.jpg?hmac=Y-uy4_ZZZ6HOZCxdiN04OOypBZ3y2dY2gAfu9MvZMSE",
+         place: "string;",
+         percentDiscount: 16,
+         name: "ggg;",
+         type: "phone",
+      },
+      {
+         id: uuid(),
+         price: 16554,
+         image:
+            "https://i.picsum.photos/id/477/200/300.jpg?hmac=Y-uy4_ZZZ6HOZCxdiN04OOypBZ3y2dY2gAfu9MvZMSE",
+         place: "string;",
+         percentDiscount: 4,
+         name: "ggg;",
+         type: "phone",
+      },
+      {
+         id: uuid(),
+         price: 143534,
+         image:
+            "https://i.picsum.photos/id/477/200/300.jpg?hmac=Y-uy4_ZZZ6HOZCxdiN04OOypBZ3y2dY2gAfu9MvZMSE",
+         place: "string;",
+         percentDiscount: 15,
+         name: "ggg;",
+         type: "phone",
+      },
+      {
+         id: uuid(),
+         price: 1,
+         image:
+            "https://i.picsum.photos/id/477/200/300.jpg?hmac=Y-uy4_ZZZ6HOZCxdiN04OOypBZ3y2dY2gAfu9MvZMSE",
+         place: "string;",
+         percentDiscount: 10000000000,
+         name: "ggg;",
+         type: "device",
+      },
+      {
+         id: uuid(),
+         price: 134324323,
+         image:
+            "https://i.picsum.photos/id/477/200/300.jpg?hmac=Y-uy4_ZZZ6HOZCxdiN04OOypBZ3y2dY2gAfu9MvZMSE",
+         place: "string;",
+         percentDiscount: 10,
+         name: "ggg;",
+         type: "laptop",
+      },
+   ];
+
+   localStorage.setItem("listProduct", JSON.stringify(x));
+}
+
+const createDataItems = () => {
+   const listItems: ItemModel[] = [
+      {
+         id: "4cd305df-abeb-467d-ba97-d52f168a9a6e",
+         value: 2
+      },
+      {
+         id: "1fd964f1-ac04-433a-9aa6-511ed36952c8",
+         value: 10
+      }
+   ];
+
+   localStorage.setItem("listItem", JSON.stringify(listItems));
+}
+
+const noExistProductLocal = (): boolean => {
+   let jsonProduct = localStorage.getItem('listProduct')
+   if (jsonProduct === '' || jsonProduct === null) {
+      return true;
+   }
+   console.log(jsonProduct)
+   return false;
+}
+
+const noExistItemLocal = (): boolean => {
+   let jsonItem = localStorage.getItem('listItem')
+   if (jsonItem === '' || jsonItem === null) {
+      return true;
+   }
+   return false;
+}
 
 
 function App() {
-  return (
-    <Router>
+   if (noExistProductLocal()) {
+      createDataProducts()
+   }
 
-      <Header></Header>
-      <Slide></Slide>
+   if (noExistItemLocal()) {
+      createDataItems()
+   }
 
-      {/* <Admin_Section></Admin_Section>
-      <Admin_Section></Admin_Section>
-      <Admin_Section></Admin_Section> */}
+   const calculatorItemCount = (): number => {
+      let itemCount = 0
+      let listItem: ItemModel[] = JSON.parse(localStorage.getItem('listItem') || "");
 
-      {/* <Cart_Section></Cart_Section> */}
+      if (listItem.length > 0) {
+         itemCount = listItem.map((item) => {
+            return item.value
+         }).reduce((x, y) => {
+            return x + y
+         })
+      }
 
-      <Route path="/" exact>
-        <Home
-          title={"Smart Phone"}
-          action={"Add to cart"}
-          type={"phone"} />
-        <Home
-          title={"Device"}
-          action={"Add to cart"}
-          type={"device"} />
-        <Home
-          title={"Laptop"}
-          action={"Add to cart"}
-          type={"laptop"} />
-      </Route>
+      return itemCount
+   }
 
-      <Route path="/admin/" exact>
-        <Home
-          title={"Smart phone"}
-          action={"Edit this product"}
-          type={"phone"} />
-          
-        <Home
-          title={"Device"}
-          action={"Edit this product"}
-          type={"device"} />
-        <Home
-          title={"Laptop"}
-          action={"Edit this product"}
-          type={"laptop"} />
-      </Route>
+   const [countItem, setCountItem] = useState<number>(calculatorItemCount())
 
-      <Route path="/cart/">
-        <CartInfomation />
-      </Route>
+   return (
+      <div>
+         <Router>
+            <Header countItem={countItem}></Header>
+            <Slide></Slide>
 
-      <Footer></Footer>
-    </Router>
+            <Route path="/" exact>
+               <ProductHome
+                  changeItemCount={(count) => {
+                     setCountItem(count)
+                  }}
+                  title={"Smart Phone"}
+                  type={"phone"} />
+               <ProductHome
+                  changeItemCount={(count) => {
+                     setCountItem(count)
+                  }}
+                  title={"Device"}
+                  type={"device"} />
+               <ProductHome
+                  changeItemCount={(count) => {
+                     setCountItem(count)
+                  }}
+                  title={"Laptop"}
+                  type={"laptop"} />
+            </Route>
 
-  );
+            <Route path="/admin/" exact>
+               <AdminProduct
+                  title={"Smart phone"}
+                  action={"Edit this product"}
+                  type={"phone"} />
+
+               <AdminProduct
+                  title={"Device"}
+                  action={"Edit this product"}
+                  type={"device"} />
+               <AdminProduct
+                  title={"Laptop"}
+                  action={"Edit this product"}
+                  type={"laptop"} />
+            </Route>
+
+            <Route path="/cart/">
+               <CartInformation
+                  changeItemCount={(count) => {
+                     setCountItem(count)
+                  }}
+               />
+            </Route>
+
+            <Footer></Footer>
+         </Router>
+      </div>
+   );
+
+
 }
 
 export default App;
