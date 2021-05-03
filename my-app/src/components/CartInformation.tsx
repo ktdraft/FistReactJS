@@ -13,6 +13,7 @@ import { useState } from "react";
 type Props = {
    changeItemCount: (itemCount: number) => void
 }
+
 const getCardFromLocalStorage = (): ItemModel[] => {
    let listItems: ItemModel[] = [];
    let jsonItems = localStorage.getItem("listItem");

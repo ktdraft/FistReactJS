@@ -133,9 +133,7 @@ function App() {
       if (listItem.length > 0) {
          itemCount = listItem.map((item) => {
             return item.value
-         }).reduce((x, y) => {
-            return x + y
-         })
+         }).reduce((x, y) => x + y, 0)
       }
 
       return itemCount
